@@ -1,0 +1,38 @@
+URLS:
+http://localhost:8071/eurekaserver/default
+http://localhost:8070/
+http://localhost:8072/actuator/gateway/routes
+http://localhost:9411/zipkin/traces/3dfb2d90877f3ce5
+http://localhost:8080/actuator/prometheus
+http://localhost:9090/graph?g0.expr=getAccountDetails_time_seconds_max&g0.tab=0&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h
+http://localhost:3000/d/c127fe9a-833b-447e-b50b-6d6b6f48974d/jvm-micrometer?orgId=1&refresh=30s
+
+
+
+Different CURL Requests:
+curl --location 'http://localhost:8072/eazybank/accounts/myAccount' \
+--header 'Content-Type: application/json' \
+--data '{
+    "customerId":1
+}'
+curl --location 'http://localhost:8071/encrypt' \
+--header 'Content-Type: text/plain' \
+--data 'Welcome to Accounts default application configuration'
+curl --location 'http://localhost:8080/account/properties'
+curl --location 'http://localhost:8072/eazybank/accounts/customerDetails' \
+--header 'Content-Type: application/json' \
+--data '{
+    "customerId":1
+}'
+
+Pre-requisites: Docker, Java 11
+
+Command to create docker images:
+Run below command in all folders: mvn spring-boot:build-image
+
+To run all docker images run this command whereever the docker compose file is:
+docker compose up
+
+
+TODO: Explore Helm for kubernetes
+
